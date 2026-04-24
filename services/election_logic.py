@@ -6,10 +6,10 @@ class ElectionLogic:
         self.journey_data = {
             "en": {
                 "first_time_steps": [
-                    {"title": "Application Submission", "desc": "Submit Form 6 online or offline with age/address proof.", "details": "<p class='mb-2'>Choose the correct form for your need:</p><ul class='list-disc pl-5 space-y-1'><li><b>Form 6:</b> For new voters.</li><li><b>Form 8:</b> For corrections.</li><li><b>Form 6A:</b> For NRIs.</li></ul><p class='mt-2 text-xs text-slate-500'>Note: Accepted file formats are JPG/PDF (Max 2MB).</p>"},
-                    {"title": "BLO Assignment", "desc": "Application is assigned to a Booth Level Officer (BLO).", "details": "<p>A <b>Booth Level Officer (BLO)</b> is a local government official. They will physically visit your home to verify your identity and residence details.</p>"},
-                    {"title": "Field Verification", "desc": "BLO conducts field verification of the submitted details.", "details": "<p class='mb-2'>The BLO will perform a rigorous 3-point check:</p><ul class='list-disc pl-5 space-y-1'><li><b>Physical address verification:</b> Ensuring you live there.</li><li><b>Document original checking:</b> Verifying uploaded proofs.</li><li><b>Signature matching:</b> Confirming your identity.</li></ul>"},
-                    {"title": "ERO Review", "desc": "Electoral Registration Officer reviews verification report and makes a decision.", "details": "<p>The <b>Electoral Registration Officer (ERO)</b> reviews the BLO's report. The ERO makes the final legal decision to officially add your name to the <b>Electoral Roll</b>.</p>"},
+                    {"title": "Application Submission", "desc": "Submit Form 6 online or offline with age/address proof.", "details": "<p class='mb-2'><b>Required Documents:</b></p><ul class='list-disc pl-5 space-y-1 mb-2'><li><b>Age Proof:</b> Birth certificate, PAN card, Aadhaar, or 10th mark sheet.</li><li><b>Address Proof:</b> Aadhaar, Passport, Utility bill (water/electricity), or Bank passbook.</li><li><b>Photograph:</b> Recent passport-size colored photo.</li></ul><p class='mb-2'>Choose the correct form for your need:</p><ul class='list-disc pl-5 space-y-1'><li><b>Form 6:</b> For new voters.</li><li><b>Form 8:</b> For corrections.</li><li><b>Form 6A:</b> For NRIs.</li></ul><p class='mt-2 text-xs text-slate-500'>Note: Accepted file formats are JPG/PDF (Max 2MB).</p>"},
+                    {"title": "BLO Assignment", "desc": "Application is assigned to a Booth Level Officer (BLO).", "details": "<p>A <b>Booth Level Officer (BLO)</b> is a local government official. They will physically visit your home to verify your identity and residence details.</p><p class='mt-2'><b>Official Procedure:</b></p><ul class='list-disc pl-5 space-y-1'><li>The application is printed and handed over to the respective BLO.</li><li>The BLO schedules a visit within 7-14 days.</li><li>Keep your original documents ready for inspection.</li></ul>"},
+                    {"title": "Field Verification", "desc": "BLO conducts field verification of the submitted details.", "details": "<p class='mb-2'>The BLO will perform a rigorous 3-point check:</p><ul class='list-disc pl-5 space-y-1'><li><b>Physical address verification:</b> Ensuring you live there.</li><li><b>Document original checking:</b> Verifying uploaded proofs.</li><li><b>Signature matching:</b> Confirming your identity.</li></ul><p class='mt-2'><b>Required from you:</b> Present original ID and address proofs to the BLO and sign the verification report.</p>"},
+                    {"title": "ERO Review", "desc": "Electoral Registration Officer reviews verification report and makes a decision.", "details": "<p>The <b>Electoral Registration Officer (ERO)</b> reviews the BLO's report. The ERO makes the final legal decision to officially add your name to the <b>Electoral Roll</b>.</p><p class='mt-2'><b>Official Procedure:</b></p><ul class='list-disc pl-5 space-y-1'><li>ERO conducts a final background check of the BLO report.</li><li>If approved, your name is published in the draft electoral roll.</li><li>After a statutory 7-day objection period, the final inclusion is processed.</li></ul>"},
                     {"title": "EPIC Generation", "desc": "Electoral Photo Identity Card (EPIC) number is generated.", "details": "<p>You can download your e-EPIC immediately once the number is generated from the official voter portal.</p>"},
                     {"title": "ID Card Delivery", "desc": "Physical EPIC is delivered via speed post.", "details": "<p>It usually takes 2-4 weeks after EPIC generation to receive the physical card at your registered address.</p>"}
                 ],
@@ -22,10 +22,10 @@ class ElectionLogic:
             },
             "hi": {
                 "first_time_steps": [
-                    {"title": "आवेदन जमा करना", "desc": "आयु/पता प्रमाण के साथ फॉर्म 6 ऑनलाइन या ऑफलाइन जमा करें।", "details": "<p class='mb-2'>अपनी आवश्यकता के अनुसार सही फॉर्म चुनें:</p><ul class='list-disc pl-5 space-y-1'><li><b>फॉर्म 6:</b> नए मतदाताओं के लिए।</li><li><b>फॉर्म 8:</b> सुधार के लिए।</li><li><b>फॉर्म 6A:</b> अनिवासी भारतीयों (NRI) के लिए।</li></ul><p class='mt-2 text-xs text-slate-500'>नोट: स्वीकृत फ़ाइल स्वरूप JPG/PDF (अधिकतम 2MB) हैं।</p>"},
-                    {"title": "BLO असाइनमेंट", "desc": "आवेदन बूथ लेवल ऑफिसर (BLO) को सौंपा जाता है।", "details": "<p><b>बूथ लेवल ऑफिसर (BLO)</b> एक स्थानीय सरकारी अधिकारी होता है। वे आपकी पहचान और निवास विवरण को सत्यापित करने के लिए आपके घर का भौतिक रूप से दौरा करेंगे।</p>"},
-                    {"title": "क्षेत्र सत्यापन", "desc": "BLO जमा किए गए विवरणों का क्षेत्र सत्यापन करता है।", "details": "<p class='mb-2'>BLO एक अनिवार्य 3-बिंदु जांच करेगा:</p><ul class='list-disc pl-5 space-y-1'><li><b>भौतिक पता सत्यापन:</b> यह सुनिश्चित करना कि आप वहां रहते हैं।</li><li><b>मूल दस्तावेज़ की जांच:</b> अपलोड किए गए प्रमाणों का सत्यापन।</li><li><b>हस्ताक्षर मिलान:</b> आपकी पहचान की पुष्टि।</li></ul>"},
-                    {"title": "ERO समीक्षा", "desc": "निर्वाचक पंजीकरण अधिकारी सत्यापन रिपोर्ट की समीक्षा करता है और निर्णय लेता है।", "details": "<p><b>निर्वाचक पंजीकरण अधिकारी (ERO)</b> BLO की रिपोर्ट की समीक्षा करता है। ERO आधिकारिक तौर पर आपका नाम <b>मतदाता सूची (Electoral Roll)</b> में जोड़ने का अंतिम कानूनी निर्णय लेता है।</p>"},
+                    {"title": "आवेदन जमा करना", "desc": "आयु/पता प्रमाण के साथ फॉर्म 6 ऑनलाइन या ऑफलाइन जमा करें।", "details": "<p class='mb-2'><b>आवश्यक दस्तावेज:</b></p><ul class='list-disc pl-5 space-y-1 mb-2'><li><b>आयु प्रमाण:</b> जन्म प्रमाण पत्र, पैन कार्ड, आधार, या 10वीं की मार्कशीट।</li><li><b>पता प्रमाण:</b> आधार, पासपोर्ट, उपयोगिता बिल (पानी/बिजली), या बैंक पासबुक।</li><li><b>तस्वीर:</b> हालिया पासपोर्ट आकार की रंगीन तस्वीर।</li></ul><p class='mb-2'>अपनी आवश्यकता के अनुसार सही फॉर्म चुनें:</p><ul class='list-disc pl-5 space-y-1'><li><b>फॉर्म 6:</b> नए मतदाताओं के लिए।</li><li><b>फॉर्म 8:</b> सुधार के लिए।</li><li><b>फॉर्म 6A:</b> अनिवासी भारतीयों (NRI) के लिए।</li></ul><p class='mt-2 text-xs text-slate-500'>नोट: स्वीकृत फ़ाइल स्वरूप JPG/PDF (अधिकतम 2MB) हैं।</p>"},
+                    {"title": "BLO असाइनमेंट", "desc": "आवेदन बूथ लेवल ऑफिसर (BLO) को सौंपा जाता है।", "details": "<p><b>बूथ लेवल ऑफिसर (BLO)</b> एक स्थानीय सरकारी अधिकारी होता है। वे आपकी पहचान और निवास विवरण को सत्यापित करने के लिए आपके घर का भौतिक रूप से दौरा करेंगे।</p><p class='mt-2'><b>आधिकारिक प्रक्रिया:</b></p><ul class='list-disc pl-5 space-y-1'><li>आवेदन प्रिंट किया जाता है और संबंधित BLO को सौंपा जाता है।</li><li>BLO 7-14 दिनों के भीतर एक यात्रा निर्धारित करता है।</li><li>निरीक्षण के लिए अपने मूल दस्तावेज तैयार रखें।</li></ul>"},
+                    {"title": "क्षेत्र सत्यापन", "desc": "BLO जमा किए गए विवरणों का क्षेत्र सत्यापन करता है।", "details": "<p class='mb-2'>BLO एक अनिवार्य 3-बिंदु जांच करेगा:</p><ul class='list-disc pl-5 space-y-1'><li><b>भौतिक पता सत्यापन:</b> यह सुनिश्चित करना कि आप वहां रहते हैं।</li><li><b>मूल दस्तावेज़ की जांच:</b> अपलोड किए गए प्रमाणों का सत्यापन।</li><li><b>हस्ताक्षर मिलान:</b> आपकी पहचान की पुष्टि।</li></ul><p class='mt-2'><b>आपसे आवश्यक:</b> BLO को मूल आईडी और पता प्रमाण प्रस्तुत करें और सत्यापन रिपोर्ट पर हस्ताक्षर करें।</p>"},
+                    {"title": "ERO समीक्षा", "desc": "निर्वाचक पंजीकरण अधिकारी सत्यापन रिपोर्ट की समीक्षा करता है और निर्णय लेता है।", "details": "<p><b>निर्वाचक पंजीकरण अधिकारी (ERO)</b> BLO की रिपोर्ट की समीक्षा करता है। ERO आधिकारिक तौर पर आपका नाम <b>मतदाता सूची (Electoral Roll)</b> में जोड़ने का अंतिम कानूनी निर्णय लेता है।</p><p class='mt-2'><b>आधिकारिक प्रक्रिया:</b></p><ul class='list-disc pl-5 space-y-1'><li>ERO BLO रिपोर्ट की अंतिम पृष्ठभूमि जांच करता है।</li><li>यदि स्वीकृत हो जाता है, तो आपका नाम ड्राफ्ट मतदाता सूची में प्रकाशित किया जाता है।</li><li>7-दिवसीय वैधानिक आपत्ति अवधि के बाद, अंतिम प्रविष्टि संसाधित की जाती है।</li></ul>"},
                     {"title": "EPIC जनरेशन", "desc": "इलेक्टोरल फोटो आइडेंटिटी कार्ड (EPIC) नंबर जनरेट होता है।", "details": "<p>नंबर जनरेट होते ही आप आधिकारिक मतदाता पोर्टल से तुरंत अपना e-EPIC डाउनलोड कर सकते हैं।</p>"},
                     {"title": "ID कार्ड डिलीवरी", "desc": "भौतिक EPIC स्पीड पोस्ट के माध्यम से वितरित किया जाता है।", "details": "<p>EPIC जनरेशन के बाद आपके पंजीकृत पते पर भौतिक कार्ड प्राप्त करने में आमतौर पर 2-4 सप्ताह लगते हैं।</p>"}
                 ],
@@ -35,29 +35,14 @@ class ElectionLogic:
                     {"title": "आधार लिंकिंग (फॉर्म 6B)", "desc": "प्रमाणीकरण के लिए स्वेच्छा से अपने आधार कार्ड को अपने वोटर आईडी से लिंक करें।", "details": "<p>यह मतदाता सूची में डुप्लिकेट प्रविष्टियों को हटाने में मदद करता है।</p>"},
                     {"title": "e-EPIC डाउनलोड करें", "desc": "आधिकारिक पोर्टल से अपने वोटर आईडी की एक डिजिटल प्रति डाउनलोड करें।", "details": "<p>e-EPIC मतदान उद्देश्यों के लिए भौतिक कार्ड के समान ही मान्य है।</p>"}
                 ]
-            },
-            "mr": {
-                "first_time_steps": [
-                    {"title": "अर्ज सबमिशन", "desc": "वय/पत्त्याच्या पुराव्यासह फॉर्म 6 ऑनलाइन किंवा ऑफलाइन सबमिट करा.", "details": "<p class='mb-2'>तुमच्या गरजेनुसार योग्य फॉर्म निवडा:</p><ul class='list-disc pl-5 space-y-1'><li><b>फॉर्म 6:</b> नवीन मतदारांसाठी.</li><li><b>फॉर्म 8:</b> दुरुस्तीसाठी.</li><li><b>फॉर्म 6A:</b> अनिवासी भारतीयांसाठी (NRI).</li></ul><p class='mt-2 text-xs text-slate-500'>टीप: स्वीकारलेले फाइल फॉरमॅट JPG/PDF (कमाल 2MB) आहेत.</p>"},
-                    {"title": "BLO असाइनमेंट", "desc": "अर्ज बूथ लेव्हल ऑफिसर (BLO) कडे सोपवला जातो.", "details": "<p><b>बूथ लेव्हल ऑफिसर (BLO)</b> हे स्थानिक सरकारी अधिकारी असतात. तुमची ओळख आणि निवासाचा तपशील पडताळण्यासाठी ते प्रत्यक्ष तुमच्या घरी भेट देतील.</p>"},
-                    {"title": "क्षेत्र पडताळणी", "desc": "BLO सबमिट केलेल्या तपशीलांची क्षेत्र पडताळणी करते.", "details": "<p class='mb-2'>BLO अनिवार्य ३-बिंदू तपासणी करेल:</p><ul class='list-disc pl-5 space-y-1'><li><b>प्रत्यक्ष पत्ता पडताळणी:</b> तुम्ही तिथेच राहता याची खात्री करणे.</li><li><b>मूळ कागदपत्रांची तपासणी:</b> अपलोड केलेल्या पुराव्यांची पडताळणी.</li><li><b>स्वाक्षरी जुळवणे:</b> तुमच्या ओळखीची पुष्टी.</li></ul>"},
-                    {"title": "ERO पुनरावलोकन", "desc": "निवडणूक नोंदणी अधिकारी पडताळणी अहवालाचे पुनरावलोकन करतात आणि निर्णय घेतात.", "details": "<p><b>निवडणूक नोंदणी अधिकारी (ERO)</b> BLO च्या अहवालाचे पुनरावलोकन करतात. तुमचे नाव अधिकृतपणे <b>मतदार यादीत (Electoral Roll)</b> समाविष्ट करण्याचा अंतिम कायदेशीर निर्णय ERO घेतात.</p>"},
-                    {"title": "EPIC जनरेशन", "desc": "इलेक्टोरल फोटो आयडेंटिटी कार्ड (EPIC) क्रमांक तयार होतो.", "details": "<p>नंबर तयार झाल्यानंतर तुम्ही अधिकृत मतदार पोर्टलवरून तुमचे e-EPIC लगेच डाउनलोड करू शकता.</p>"},
-                    {"title": "ID कार्ड वितरण", "desc": "भौतिक EPIC स्पीड पोस्टद्वारे वितरित केले जाते.", "details": "<p>EPIC जनरेशन नंतर तुमच्या नोंदणीकृत पत्त्यावर भौतिक कार्ड प्राप्त होण्यासाठी साधारणपणे 2-4 आठवडे लागतात.</p>"}
-                ],
-                "existing_voter_steps": [
-                    {"title": "मतदार यादीत नाव तपासा", "desc": "तुमचा EPIC क्रमांक वापरून मतदार यादीतील तुमचे नाव सत्यापित करा.", "details": "<p>निवडणुकीच्या दिवसापूर्वी तुमच्या मतदान केंद्राचे तपशील योग्य असल्याची खात्री करा.</p>"},
-                    {"title": "तपशील अपडेट करा (फॉर्म 8)", "desc": "कोणतीही सुधारणा, निवासस्थान बदलणे किंवा EPIC बदलण्यासाठी फॉर्म 8 सबमिट करा.", "details": "<p>तुम्ही त्याच मतदारसंघात स्थलांतर करत असल्यास फॉर्म 8 देखील काम करतो.</p>"},
-                    {"title": "आधार लिंकिंग (फॉर्म 6B)", "desc": "प्रमाणीकरणासाठी तुमची आधार कार्ड तुमच्या मतदार ओळखपत्राशी स्वेच्छेने लिंक करा.", "details": "<p>यामुळे मतदार यादीतील डुप्लिकेट नोंदी काढण्यात मदत होते.</p>"},
-                    {"title": "e-EPIC डाउनलोड करा", "desc": "अधिकृत पोर्टलवरून तुमच्या मतदार ओळखपत्राची डिजिटल प्रत डाउनलोड करा.", "details": "<p>e-EPIC मतदानासाठी भौतिक कार्डाइतकेच वैध आहे.</p>"}
-                ]
+
             },
             "gu": {
                 "first_time_steps": [
-                    {"title": "અરજી સબમિશન", "desc": "વય/સરનામાના પુરાવા સાથે ફોર્મ 6 ઓનલાઇન અથવા ઑફલાઇન સબમિટ કરો.", "details": "<p class='mb-2'>તમારી જરૂરિયાત મુજબ યોગ્ય ફોર્મ પસંદ કરો:</p><ul class='list-disc pl-5 space-y-1'><li><b>ફોર્મ 6:</b> નવા મતદારો માટે.</li><li><b>ફોર્મ 8:</b> સુધારા માટે.</li><li><b>ફોર્મ 6A:</b> બિન-નિવાસી ભારતીયો (NRI) માટે.</li></ul><p class='mt-2 text-xs text-slate-500'>નોંધ: સ્વીકૃત ફાઇલ ફોર્મેટ્સ JPG/PDF (મહત્તમ 2MB) છે.</p>"},
-                    {"title": "BLO સોંપણી", "desc": "અરજી બૂથ લેવલ ઓફિસર (BLO) ને સોંપવામાં આવે છે.", "details": "<p><b>બૂથ લેવલ ઓફિસર (BLO)</b> એ સ્થાનિક સરકારી અધિકારી છે. તેઓ તમારી ઓળખ અને રહેઠાણની વિગતો ચકાસવા માટે રૂબરૂ તમારા ઘરની મુલાકાત લેશે.</p>"},
-                    {"title": "ક્ષેત્ર ચકાસણી", "desc": "BLO સબમિટ કરેલી વિગતોની ક્ષેત્ર ચકાસણી કરે છે.", "details": "<p class='mb-2'>BLO ફરજિયાત 3-પોઇન્ટ ચેક કરશે:</p><ul class='list-disc pl-5 space-y-1'><li><b>ભૌતિક સરનામાંની ચકાસણી:</b> ખાતરી કરવી કે તમે ત્યાં રહો છો.</li><li><b>મૂળ દસ્તાવેજ ચકાસણી:</b> અપલોડ કરેલા પુરાવાઓની ચકાસણી.</li><li><b>સહી મેચિંગ:</b> તમારી ઓળખની પુષ્ટિ.</li></ul>"},
-                    {"title": "ERO સમીક્ષા", "desc": "ચૂંટણી નોંધણી અધિકારી ચકાસણી રિપોર્ટની સમીક્ષા કરે છે અને નિર્ણય લે છે.", "details": "<p><b>ચૂંટણી નોંધણી અધિકારી (ERO)</b> BLO ના રિપોર્ટની સમીક્ષા કરે છે. તમારું નામ સત્તાવાર રીતે <b>મતદાર યાદી (Electoral Roll)</b> માં ઉમેરવાનો અંતિમ કાનૂની નિર્ણય ERO લે છે.</p>"},
+                    {"title": "અરજી સબમિશન", "desc": "વય/સરનામાના પુરાવા સાથે ફોર્મ 6 ઓનલાઇન અથવા ઑફલાઇન સબમિટ કરો.", "details": "<p class='mb-2'><b>જરૂરી દસ્તાવેજો:</b></p><ul class='list-disc pl-5 space-y-1 mb-2'><li><b>ઉંમરનો પુરાવો:</b> જન્મ પ્રમાણપત્ર, પાન કાર્ડ, આધાર, અથવા 10માની માર્કશીટ.</li><li><b>સરનામાનો પુરાવો:</b> આધાર, પાસપોર્ટ, યુટિલિટી બિલ (પાણી/વીજળી), અથવા બેંક પાસબુક.</li><li><b>ફોટોગ્રાફ:</b> તાજેતરનો પાસપોર્ટ સાઇઝનો રંગીન ફોટો.</li></ul><p class='mb-2'>તમારી જરૂરિયાત મુજબ યોગ્ય ફોર્મ પસંદ કરો:</p><ul class='list-disc pl-5 space-y-1'><li><b>ફોર્મ 6:</b> નવા મતદારો માટે.</li><li><b>ફોર્મ 8:</b> સુધારા માટે.</li><li><b>ફોર્મ 6A:</b> બિન-નિવાસી ભારતીયો (NRI) માટે.</li></ul><p class='mt-2 text-xs text-slate-500'>નોંધ: સ્વીકૃત ફાઇલ ફોર્મેટ્સ JPG/PDF (મહત્તમ 2MB) છે.</p>"},
+                    {"title": "BLO સોંપણી", "desc": "અરજી બૂથ લેવલ ઓફિસર (BLO) ને સોંપવામાં આવે છે.", "details": "<p><b>બૂથ લેવલ ઓફિસર (BLO)</b> એ સ્થાનિક સરકારી અધિકારી છે. તેઓ તમારી ઓળખ અને રહેઠાણની વિગતો ચકાસવા માટે રૂબરૂ તમારા ઘરની મુલાકાત લેશે.</p><p class='mt-2'><b>સત્તાવાર પ્રક્રિયા:</b></p><ul class='list-disc pl-5 space-y-1'><li>અરજી પ્રિન્ટ કરવામાં આવે છે અને સંબંધિત BLO ને સોંપવામાં આવે છે.</li><li>BLO 7-14 દિવસમાં મુલાકાતનું શેડ્યૂલ કરે છે.</li><li>નિરીક્ષણ માટે તમારા મૂળ દસ્તાવેજો તૈયાર રાખો.</li></ul>"},
+                    {"title": "ક્ષેત્ર ચકાસણી", "desc": "BLO સબમિટ કરેલી વિગતોની ક્ષેત્ર ચકાસણી કરે છે.", "details": "<p class='mb-2'>BLO ફરજિયાત 3-પોઇન્ટ ચેક કરશે:</p><ul class='list-disc pl-5 space-y-1'><li><b>ભૌતિક સરનામાંની ચકાસણી:</b> ખાતરી કરવી કે તમે ત્યાં રહો છો.</li><li><b>મૂળ દસ્તાવેજ ચકાસણી:</b> અપલોડ કરેલા પુરાવાઓની ચકાસણી.</li><li><b>સહી મેચિંગ:</b> તમારી ઓળખની પુષ્ટિ.</li></ul><p class='mt-2'><b>તમારા તરફથી જરૂરી:</b> BLO ને મૂળ ID અને સરનામાના પુરાવા રજૂ કરો અને ચકાસણી રિપોર્ટ પર સહી કરો.</p>"},
+                    {"title": "ERO સમીક્ષા", "desc": "ચૂંટણી નોંધણી અધિકારી ચકાસણી રિપોર્ટની સમીક્ષા કરે છે અને નિર્ણય લે છે.", "details": "<p><b>ચૂંટણી નોંધણી અધિકારી (ERO)</b> BLO ના રિપોર્ટની સમીક્ષા કરે છે. તમારું નામ સત્તાવાર રીતે <b>મતદાર યાદી (Electoral Roll)</b> માં ઉમેરવાનો અંતિમ કાનૂની નિર્ણય ERO લે છે.</p><p class='mt-2'><b>સત્તાવાર પ્રક્રિયા:</b></p><ul class='list-disc pl-5 space-y-1'><li>ERO BLO રિપોર્ટની અંતિમ પૃષ્ઠભૂમિ તપાસ કરે છે.</li><li>જો મંજૂર થાય, તો તમારું નામ ડ્રાફ્ટ મતદાર યાદીમાં પ્રકાશિત થાય છે.</li><li>7-દિવસની વૈધાનિક વાંધા અવધિ પછી, અંતિમ સમાવેશની પ્રક્રિયા થાય છે.</li></ul>"},
                     {"title": "EPIC જનરેશન", "desc": "ઈલેક્ટોરલ ફોટો આઈડેન્ટિટી કાર્ડ (EPIC) નંબર જનરેટ થાય છે.", "details": "<p>નંબર જનરેટ થયા પછી તરત જ તમે સત્તાવાર મતદાર પોર્ટલ પરથી તમારું e-EPIC ડાઉનલોડ કરી શકો છો.</p>"},
                     {"title": "ID કાર્ડ વિતરણ", "desc": "ભૌતિક EPIC સ્પીડ પોસ્ટ દ્વારા વિતરિત કરવામાં આવે છે.", "details": "<p>EPIC જનરેશન પછી તમારા નોંધાયેલા સરનામા પર ભૌતિક કાર્ડ મેળવવામાં સામાન્ય રીતે 2-4 અઠવાડિયા લાગે છે.</p>"}
                 ],
@@ -81,7 +66,20 @@ class ElectionLogic:
 
     def get_timeline(self, city: str) -> dict:
         """Returns a dummy timeline for the specified city."""
-        city = city.title()
+        city_lower = city.strip().lower()
+        valid_gujarat_cities = {
+            "ahmedabad", "surat", "vadodara", "rajkot", "bhavnagar",
+            "jamnagar", "gandhinagar", "junagadh", "gandhidham", "anand",
+            "navsari", "morbi", "nadiad", "surendranagar", "bharuch",
+            "mehsana", "bhuj", "porbandar", "palanpur", "valsad",
+            "vapi", "gondal", "veraval", "godhra", "patan",
+            "dahod", "botad", "amreli", "deesa", "jetpur"
+        }
+        
+        if city_lower not in valid_gujarat_cities:
+            raise ValueError("CivicGuide AI currently provides detailed electoral data for Gujarat only. Please enter a city within Gujarat (e.g., Rajkot, Ahmedabad, Surat).")
+
+        city_title = city.title()
         now = datetime.now()
         
         # Generating dummy dates - keeping it realistic intervals
@@ -91,10 +89,10 @@ class ElectionLogic:
         counting_date = polling_date + timedelta(days=5)
         
         return {
-            "location": city,
-            "notification_date": notification_date.strftime("%Y-%m-%d"),
-            "nomination_deadline": nomination_deadline.strftime("%Y-%m-%d"),
-            "polling_date": polling_date.strftime("%Y-%m-%d"),
-            "counting_date": counting_date.strftime("%Y-%m-%d")
+            "location": city_title,
+            "notification_date": notification_date.strftime("%d-%m-%Y"),
+            "nomination_deadline": nomination_deadline.strftime("%d-%m-%Y"),
+            "polling_date": polling_date.strftime("%d-%m-%Y"),
+            "counting_date": counting_date.strftime("%d-%m-%Y")
         }
 

@@ -31,4 +31,7 @@ async def get_timeline(city: str):
     """Get the upcoming dummy election dates for a given city."""
     if not city.strip():
         raise HTTPException(status_code=400, detail="City name cannot be empty")
-    return election_service.get_timeline(city=city)
+    try:
+        return election_service.get_timeline(city=city)
+    except ValueError as e:
+        raise HTTPException(status_code=400, detail=str(e))

@@ -27,12 +27,15 @@
                 <select id="langSelect" class="h-10 bg-indigo-800 border border-indigo-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 transition-colors cursor-pointer hover:bg-indigo-700">
                     <option value="en">English</option>
                     <option value="hi">हिंदी (Hindi)</option>
-                    <option value="mr">मराठी (Marathi)</option>
                     <option value="gu">ગુજરાતી (Gujarati)</option>
                 </select>
             </div>
         </div>
     </header>
+
+    <div class="bg-yellow-100 text-yellow-900 py-2 shadow-sm border-b border-yellow-200">
+        <marquee behavior="scroll" direction="left" class="font-medium text-sm mt-1">📢 Important: This assistant is currently optimized for Gujarat state election processes and timelines.</marquee>
+    </div>
 
     <main class="max-w-6xl mx-auto px-6 py-10 space-y-12 overflow-x-hidden">
         
@@ -129,8 +132,7 @@
             let isFirstTime = true;
             const translations = {
                 en: { title: "Find Your Local Election Details", desc: "Enter your city to instantly discover upcoming election dates and view the official step-by-step registration roadmap.", process: "ECI Registration Process", search: "Search by City (e.g. Ahmedabad)", no_city: "Search for a city viewing dates.", voter_label: "First-time Voter?" },
-                hi: { title: "अपना स्थानीय चुनाव विवरण खोजें", desc: "आगामी चुनाव तिथियों को तुरंत जानने और आधिकारिक चरण-दर-चरण पंजीकरण रोडमैप देखने के लिए अपना शहर दर्ज करें।", process: "ECI पंजीकरण प्रक्रिया", search: "शहर खोजें (उदा. दिल्ली)", no_city: "तिथियां देखने के लिए शहर खोजें।", voter_label: "पहली बार मतदाता?" },
-                mr: { title: "आपला स्थानिक निवडणूक तपशील शोधा", desc: "आगामी निवडणुकीच्या तारखा त्वरित शोधण्यासाठी आणि अधिकृत टप्प्याटप्प्याने नोंदणी रोडमॅप पाहण्यासाठी आपले शहर प्रविष्ट करा.", process: "ECI नोंदणी प्रक्रिया", search: "शहरानुसार शोधा (उदा. मुंबई)", no_city: "तारखा पाहण्यासाठी शहर शोधा.", voter_label: "पहिल्यांदा मतदार?" },
+                hi: { title: "अपना स्थानीय चुनाव विवरण खोजें", desc: "आगामी चुनाव तिथियों को तुरंत जानने और आधिकारिक चरण-दर-चरण पंजीकरण रोडमैप देखने के लिए अपना शहर दर्ज करें।", process: "ECI पंजीकरण प्रक्रिया", search: "शहर खोजें (उदा. अहमदाबाद)", no_city: "तिथियां देखने के लिए शहर खोजें।", voter_label: "पहली बार मतदाता?" },
                 gu: { title: "તમારી સ્થાનિક ચૂંટણી વિગતો શોધો", desc: "આગામી ચૂંટણીની તારીખો તરત જ શોધવા અને અધિકૃત સ્ટેપ-બ-સ્ટેપ નોંધણી રોડમેપ જોવા માટે તમારું શહેર દાખલ કરો.", process: "ECI નોંધણી પ્રક્રિયા", search: "શહેર દ્વારા શોધો (દા.ત. અમદાવાદ)", no_city: "તારીખો જોવા માટે શહેર શોધો.", voter_label: "પ્રથમ વખત મતદાર?" }
             };
             const fetchJourney = async () => {
@@ -140,10 +142,14 @@
             const fetchTimeline = async (city) => {
                 try {
                     const res = await fetch(`/api/timeline/${encodeURIComponent(city)}`);
-                    if (!res.ok) throw new Error("City not found");
+                    if (!res.ok) {
+                        const err = await res.json();
+                        throw new Error(err.detail || "Unable to load details for this city.");
+                    }
                     renderTimeline(await res.json());
+                    document.getElementById('mapIframe').src = `https://maps.google.com/maps?q=${encodeURIComponent(city)}&output=embed`;
                 } catch (e) {
-                    document.getElementById('timelineContent').innerHTML = `<p class="text-rose-500 font-medium p-4 text-center">Unable to load details for this city.</p>`;
+                    document.getElementById('timelineContent').innerHTML = `<p class="text-rose-500 font-medium p-4 text-center">${escapeHTML(e.message)}</p>`;
                 }
             };
             const renderStepper = (steps) => {
@@ -196,7 +202,6 @@
                 const city = citySearch.value.trim();
                 if (city) {
                     fetchTimeline(city); 
-                    document.getElementById('mapIframe').src = `https://maps.google.com/maps?q=${encodeURIComponent(city)}&output=embed`;
                 }
             });
             citySearch.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchBtn.click(); });
