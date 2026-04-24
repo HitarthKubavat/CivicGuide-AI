@@ -20,11 +20,11 @@
                 <h1 class="text-2xl font-bold tracking-wide">CivicGuide AI</h1>
             </div>
             <div class="flex items-center space-x-4">
-                <div class="flex items-center space-x-2 bg-indigo-800 border border-indigo-500 rounded-lg px-3 py-2 text-white text-sm h-full" id="voterTypeToggleContainer">
-                    <label for="firstTimeVoter" class="cursor-pointer whitespace-nowrap leading-none" id="voterLabel">First-time Voter?</label>
+                <div class="flex items-center h-10 space-x-2 bg-indigo-800 border border-indigo-500 rounded-lg px-3 text-white text-sm" id="voterTypeToggleContainer">
+                    <label for="firstTimeVoter" class="cursor-pointer whitespace-nowrap flex items-center" id="voterLabel">First-time Voter?</label>
                     <input type="checkbox" id="firstTimeVoter" class="w-4 h-4 text-blue-600 bg-gray-100 border-gray-300 rounded focus:ring-blue-500 focus:ring-2 cursor-pointer" checked>
                 </div>
-                <select id="langSelect" class="bg-indigo-800 border border-indigo-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 py-2 transition-colors cursor-pointer hover:bg-indigo-700 h-full">
+                <select id="langSelect" class="h-10 bg-indigo-800 border border-indigo-500 text-white text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 block w-full px-3 transition-colors cursor-pointer hover:bg-indigo-700">
                     <option value="en">English</option>
                     <option value="hi">हिंदी (Hindi)</option>
                     <option value="mr">मराठी (Marathi)</option>
@@ -128,10 +128,10 @@
             let currentLang = 'en';
             let isFirstTime = true;
             const translations = {
-                en: { title: "Find Your Local Election Details", desc: "Enter your city to instantly discover upcoming election dates and view the official step-by-step registration roadmap.", process: "ECI Registration Process", search: "Search by City (e.g. Ahmedabad)", no_city: "Search for a city viewing dates.", voter_label: "First-time Voter?", pro_tip: "Pro-Tip:" },
-                hi: { title: "अपना स्थानीय चुनाव विवरण खोजें", desc: "आगामी चुनाव तिथियों को तुरंत जानने और आधिकारिक चरण-दर-चरण पंजीकरण रोडमैप देखने के लिए अपना शहर दर्ज करें।", process: "ECI पंजीकरण प्रक्रिया", search: "शहर खोजें (उदा. दिल्ली)", no_city: "तिथियां देखने के लिए शहर खोजें।", voter_label: "पहली बार मतदाता?", pro_tip: "प्रो-टिप:" },
-                mr: { title: "आपला स्थानिक निवडणूक तपशील शोधा", desc: "आगामी निवडणुकीच्या तारखा त्वरित शोधण्यासाठी आणि अधिकृत टप्प्याटप्प्याने नोंदणी रोडमॅप पाहण्यासाठी आपले शहर प्रविष्ट करा.", process: "ECI नोंदणी प्रक्रिया", search: "शहरानुसार शोधा (उदा. मुंबई)", no_city: "तारखा पाहण्यासाठी शहर शोधा.", voter_label: "पहिल्यांदा मतदार?", pro_tip: "प्रो-टिप:" },
-                gu: { title: "તમારી સ્થાનિક ચૂંટણી વિગતો શોધો", desc: "આગામી ચૂંટણીની તારીખો તરત જ શોધવા અને અધિકૃત સ્ટેપ-બ-સ્ટેપ નોંધણી રોડમેપ જોવા માટે તમારું શહેર દાખલ કરો.", process: "ECI નોંધણી પ્રક્રિયા", search: "શહેર દ્વારા શોધો (દા.ત. અમદાવાદ)", no_city: "તારીખો જોવા માટે શહેર શોધો.", voter_label: "પ્રથમ વખત મતદાર?", pro_tip: "પ્રો-ટિપ:" }
+                en: { title: "Find Your Local Election Details", desc: "Enter your city to instantly discover upcoming election dates and view the official step-by-step registration roadmap.", process: "ECI Registration Process", search: "Search by City (e.g. Ahmedabad)", no_city: "Search for a city viewing dates.", voter_label: "First-time Voter?" },
+                hi: { title: "अपना स्थानीय चुनाव विवरण खोजें", desc: "आगामी चुनाव तिथियों को तुरंत जानने और आधिकारिक चरण-दर-चरण पंजीकरण रोडमैप देखने के लिए अपना शहर दर्ज करें।", process: "ECI पंजीकरण प्रक्रिया", search: "शहर खोजें (उदा. दिल्ली)", no_city: "तिथियां देखने के लिए शहर खोजें।", voter_label: "पहली बार मतदाता?" },
+                mr: { title: "आपला स्थानिक निवडणूक तपशील शोधा", desc: "आगामी निवडणुकीच्या तारखा त्वरित शोधण्यासाठी आणि अधिकृत टप्प्याटप्प्याने नोंदणी रोडमॅप पाहण्यासाठी आपले शहर प्रविष्ट करा.", process: "ECI नोंदणी प्रक्रिया", search: "शहरानुसार शोधा (उदा. मुंबई)", no_city: "तारखा पाहण्यासाठी शहर शोधा.", voter_label: "पहिल्यांदा मतदार?" },
+                gu: { title: "તમારી સ્થાનિક ચૂંટણી વિગતો શોધો", desc: "આગામી ચૂંટણીની તારીખો તરત જ શોધવા અને અધિકૃત સ્ટેપ-બ-સ્ટેપ નોંધણી રોડમેપ જોવા માટે તમારું શહેર દાખલ કરો.", process: "ECI નોંધણી પ્રક્રિયા", search: "શહેર દ્વારા શોધો (દા.ત. અમદાવાદ)", no_city: "તારીખો જોવા માટે શહેર શોધો.", voter_label: "પ્રથમ વખત મતદાર?" }
             };
             const fetchJourney = async () => {
                 try { const res = await fetch(`/api/journey?lang=${currentLang}&first_time=${isFirstTime}`); renderStepper((await res.json()).steps || []); } 
@@ -149,7 +149,6 @@
             const renderStepper = (steps) => {
                 const container = document.getElementById('stepperContent');
                 container.innerHTML = '';
-                const proTipLabel = translations[currentLang].pro_tip;
                 steps.forEach((step, index) => {
                     const isLast = index === steps.length - 1;
                     container.innerHTML += `
@@ -163,8 +162,8 @@
                                 </h4>
                                 <p class="text-slate-600">${escapeHTML(step.desc)}</p>
                                 <div class="pro-tip overflow-hidden transition-all duration-300 max-h-0">
-                                    <div class="mt-4 p-3 bg-blue-50 border-l-4 border-blue-500 rounded-r-lg text-sm text-blue-800">
-                                        <span class="font-bold">${proTipLabel}</span> ${escapeHTML(step.pro_tip || "Stay prepared for the process.")}
+                                    <div class="mt-4 p-4 bg-slate-50 border border-slate-200 rounded-lg text-sm text-slate-700 shadow-inner">
+                                        ${step.details || ""}
                                     </div>
                                 </div>
                             </div>
