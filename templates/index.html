@@ -106,6 +106,43 @@
             </div>
             
         </div>
+        
+        <!-- New Section: EVM & Voter IQ -->
+        <div class="grid grid-cols-1 lg:grid-cols-2 gap-8">
+            <!-- EVM & VVPAT Guide -->
+            <section class="glass rounded-2xl p-8 shadow-lg fade-in" style="animation-delay: 0.4s;">
+                <h3 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-4 flex items-center justify-between">
+                    <span id="howToVoteTitle">How to Vote on Election Day</span>
+                    <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
+                </h3>
+                <div class="space-y-4" id="evmStepsContainer">
+                    <!-- Dynamic EVM Steps -->
+                </div>
+            </section>
+
+            <!-- Voter IQ Quiz & KYC -->
+            <div class="space-y-8">
+                <section class="glass rounded-2xl p-8 shadow-lg fade-in" style="animation-delay: 0.5s;">
+                    <h3 class="text-2xl font-bold text-slate-800 mb-6 border-b pb-4 flex items-center justify-between">
+                        <span id="quizTitle">Voter IQ Quiz</span>
+                        <svg class="w-6 h-6 text-indigo-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M8.228 9c.549-1.165 2.03-2 3.772-2 2.21 0 4 1.343 4 3 0 1.4-1.278 2.575-3.006 2.907-.542.104-.994.54-.994 1.093m0 3h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z"></path></svg>
+                    </h3>
+                    <div id="quizContainer" class="space-y-6">
+                        <!-- Dynamic Quiz -->
+                    </div>
+                </section>
+
+                <section class="glass rounded-2xl p-6 shadow-lg fade-in bg-gradient-to-r from-blue-50 to-indigo-50 border border-blue-100 flex items-center justify-between hover:shadow-xl transition-shadow cursor-pointer" onclick="window.open('https://play.google.com/store/apps/details?id=com.eci.citizen', '_blank')">
+                    <div>
+                        <h4 class="text-lg font-bold text-slate-800" id="kycLink">Know Your Candidate (KYC) App</h4>
+                        <p class="text-sm text-slate-600" id="kycDesc">Research your local leaders before voting.</p>
+                    </div>
+                    <div class="bg-blue-600 text-white p-3 rounded-full shrink-0 ml-4">
+                        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14"></path></svg>
+                    </div>
+                </section>
+            </div>
+        </div>
     </main>
 
     <footer class="mt-auto py-6 text-center text-sm text-slate-500 border-t">
@@ -113,6 +150,9 @@
     </footer>
 
     <script>
+        window.currentQuizIndex = 0;
+        window.quizQuestions = [];
+
         const toggleAccordion = (el) => {
             const tip = el.querySelector('.pro-tip');
             const icon = el.querySelector('svg.accordion-icon');
@@ -125,18 +165,105 @@
             }
         };
 
+        const toggleEVMStep = (el) => {
+            const desc = el.querySelector('.evm-desc');
+            const icon = el.querySelector('svg');
+            if (desc.style.maxHeight) {
+                desc.style.maxHeight = null;
+                icon.style.transform = 'rotate(0deg)';
+            } else {
+                desc.style.maxHeight = desc.scrollHeight + 'px';
+                icon.style.transform = 'rotate(180deg)';
+            }
+        };
+
+        window.handleQuizAnswer = (selected, correct) => {
+            const options = document.querySelectorAll('.quiz-option');
+            options.forEach(opt => opt.disabled = true);
+            const feedback = document.getElementById('quizFeedback');
+            feedback.classList.remove('hidden');
+            const t = window.appTranslations[window.currentLang];
+            
+            if (selected === correct) {
+                options[selected].classList.add('bg-green-100', 'border-green-400', 'text-green-800');
+                feedback.classList.add('bg-green-50', 'text-green-700');
+                feedback.innerHTML = t.correct;
+            } else {
+                options[selected].classList.add('bg-rose-100', 'border-rose-400', 'text-rose-800');
+                options[correct].classList.add('bg-green-100', 'border-green-400', 'text-green-800');
+                feedback.classList.add('bg-rose-50', 'text-rose-700');
+                feedback.innerHTML = t.incorrect;
+            }
+            
+            setTimeout(() => {
+                window.currentQuizIndex++;
+                window.renderQuizQuestion();
+            }, 2000);
+        };
+
         document.addEventListener("DOMContentLoaded", () => {
             const escapeHTML = s => String(s).replace(/[&<>'"]/g, t => ({'&':'&amp;','<':'&lt;','>':'&gt;',"'":'&#39;','"':'&quot;'}[t]||t));
             const langSelect = document.getElementById('langSelect'), searchBtn = document.getElementById('searchBtn'), citySearch = document.getElementById('citySearch'), firstTimeVoter = document.getElementById('firstTimeVoter');
-            let currentLang = 'en';
+            window.currentLang = 'en';
             let isFirstTime = true;
-            const translations = {
-                en: { title: "Find Your Local Election Details", desc: "Enter your city to instantly discover upcoming election dates and view the official step-by-step registration roadmap.", process: "ECI Registration Process", search: "Search by City (e.g. Ahmedabad)", no_city: "Search for a city viewing dates.", voter_label: "First-time Voter?", note: "📢 Important: This assistant is currently optimized for Gujarat state election processes and timelines." },
-                hi: { title: "अपना स्थानीय चुनाव विवरण खोजें", desc: "आगामी चुनाव तिथियों को तुरंत जानने और आधिकारिक चरण-दर-चरण पंजीकरण रोडमैप देखने के लिए अपना शहर दर्ज करें।", process: "ECI पंजीकरण प्रक्रिया", search: "शहर खोजें (उदा. अहमदाबाद)", no_city: "तिथियां देखने के लिए शहर खोजें।", voter_label: "पहली बार मतदाता?", note: "📢 महत्वपूर्ण: यह सहायक वर्तमान में गुजरात राज्य चुनाव प्रक्रियाओं और समयसीमा के लिए अनुकूलित है।" },
-                gu: { title: "તમારી સ્થાનિક ચૂંટણી વિગતો શોધો", desc: "આગામી ચૂંટણીની તારીખો તરત જ શોધવા અને અધિકૃત સ્ટેપ-બ-સ્ટેપ નોંધણી રોડમેપ જોવા માટે તમારું શહેર દાખલ કરો.", process: "ECI નોંધણી પ્રક્રિયા", search: "શહેર દ્વારા શોધો (દા.ત. અમદાવાદ)", no_city: "તારીખો જોવા માટે શહેર શોધો.", voter_label: "પ્રથમ વખત મતદાર?", note: "📢 મહત્વપૂર્ણ: આ આસિસ્ટન્ટ અત્યારે ગુજરાત રાજ્યની ચૂંટણી પ્રક્રિયાઓ અને સમયરેખા માટે ઓપ્ટિમાઇઝ કરેલ છે." }
+            window.appTranslations = {
+                en: { 
+                    title: "Find Your Local Election Details", desc: "Enter your city to instantly discover upcoming election dates and view the official step-by-step registration roadmap.", process: "ECI Registration Process", search: "Search by City (e.g. Ahmedabad)", no_city: "Search for a city viewing dates.", voter_label: "First-time Voter?", note: "📢 Important: This assistant is currently optimized for Gujarat state election processes and timelines.",
+                    how_to_vote: "How to Vote on Election Day",
+                    evm_steps: [
+                        {title: "Step 1: ID Check", desc: "Identification by Polling Officer (PO1)."},
+                        {title: "Step 2: Verification", desc: "Signature and Indelible Ink (PO2)."},
+                        {title: "Step 3: Vote", desc: "Ballot Unit (EVM) - Press the button for your candidate."},
+                        {title: "Step 4: VVPAT", desc: "VVPAT Verification - See the printed slip for 7 seconds."}
+                    ],
+                    quiz_title: "Voter IQ Quiz",
+                    quiz_q1: "What is the minimum age to vote in India?", quiz_o1: ["16 Years", "18 Years", "21 Years"], quiz_a1: 1,
+                    quiz_q2: "Is the Aadhar card mandatory if I have a Voter ID?", quiz_o2: ["Yes", "No"], quiz_a2: 1,
+                    quiz_q3: "How long is the VVPAT slip visible?", quiz_o3: ["5 seconds", "7 seconds", "10 seconds"], quiz_a3: 1,
+                    kyc_link: "Know Your Candidate (KYC) App",
+                    kyc_desc: "Research your local leaders before voting.",
+                    quiz_completed: "Quiz Completed!", quiz_ready: "You are ready for the elections.", restart: "Restart Quiz",
+                    correct: "✅ Correct! Loading next...", incorrect: "❌ Incorrect! Loading next..."
+                },
+                hi: { 
+                    title: "अपना स्थानीय चुनाव विवरण खोजें", desc: "आगामी चुनाव तिथियों को तुरंत जानने और आधिकारिक चरण-दर-चरण पंजीकरण रोडमैप देखने के लिए अपना शहर दर्ज करें।", process: "ECI पंजीकरण प्रक्रिया", search: "शहर खोजें (उदा. अहमदाबाद)", no_city: "तिथियां देखने के लिए शहर खोजें।", voter_label: "पहली बार मतदाता?", note: "📢 महत्वपूर्ण: यह सहायक वर्तमान में गुजरात राज्य चुनाव प्रक्रियाओं और समयसीमा के लिए अनुकूलित है।",
+                    how_to_vote: "चुनाव के दिन मतदान कैसे करें",
+                    evm_steps: [
+                        {title: "चरण 1: पहचान", desc: "मतदान अधिकारी (PO1) द्वारा पहचान।"},
+                        {title: "चरण 2: सत्यापन", desc: "हस्ताक्षर और अमिट स्याही (PO2)।"},
+                        {title: "चरण 3: मतदान", desc: "बैलेट यूनिट (EVM) - अपने उम्मीदवार के लिए बटन दबाएं।"},
+                        {title: "चरण 4: VVPAT", desc: "VVPAT सत्यापन - 7 सेकंड के लिए मुद्रित पर्ची देखें।"}
+                    ],
+                    quiz_title: "वोटर IQ क्विज़",
+                    quiz_q1: "भारत में मतदान करने की न्यूनतम आयु क्या है?", quiz_o1: ["16 वर्ष", "18 वर्ष", "21 वर्ष"], quiz_a1: 1,
+                    quiz_q2: "क्या वोटर आईडी होने पर भी आधार कार्ड अनिवार्य है?", quiz_o2: ["हाँ", "नहीं"], quiz_a2: 1,
+                    quiz_q3: "VVPAT पर्ची कितनी देर तक दिखाई देती है?", quiz_o3: ["5 सेकंड", "7 सेकंड", "10 सेकंड"], quiz_a3: 1,
+                    kyc_link: "अपने उम्मीदवार को जानें (KYC) ऐप",
+                    kyc_desc: "वोट देने से पहले अपने स्थानीय नेताओं के बारे में शोध करें।",
+                    quiz_completed: "प्रश्नोत्तरी पूर्ण!", quiz_ready: "आप चुनाव के लिए तैयार हैं।", restart: "प्रश्नोत्तरी पुनः आरंभ करें",
+                    correct: "✅ सही! अगला लोड हो रहा है...", incorrect: "❌ गलत! अगला लोड हो रहा है..."
+                },
+                gu: { 
+                    title: "તમારી સ્થાનિક ચૂંટણી વિગતો શોધો", desc: "આગામી ચૂંટણીની તારીખો તરત જ શોધવા અને અધિકૃત સ્ટેપ-બ-સ્ટેપ નોંધણી રોડમેપ જોવા માટે તમારું શહેર દાખલ કરો.", process: "ECI નોંધણી પ્રક્રિયા", search: "શહેર દ્વારા શોધો (દા.ત. અમદાવાદ)", no_city: "તારીખો જોવા માટે શહેર શોધો.", voter_label: "પ્રથમ વખત મતદાર?", note: "📢 મહત્વપૂર્ણ: આ આસિસ્ટન્ટ અત્યારે ગુજરાત રાજ્યની ચૂંટણી પ્રક્રિયાઓ અને સમયરેખા માટે ઓપ્ટિમાઇઝ કરેલ છે.",
+                    how_to_vote: "ચૂંટણીના દિવસે મતદાન કેવી રીતે કરવું",
+                    evm_steps: [
+                        {title: "પગલું 1: ઓળખ", desc: "મતદાન અધિકારી (PO1) દ્વારા ઓળખ."},
+                        {title: "પગલું 2: ચકાસણી", desc: "સહી અને અમીટ શાહી (PO2)."},
+                        {title: "પગલું 3: મતદાન", desc: "બેલેટ યુનિટ (EVM) - તમારા ઉમેદવાર માટે બટન દબાવો."},
+                        {title: "પગલું 4: VVPAT", desc: "VVPAT ચકાસણી - 7 સેકન્ડ માટે પ્રિન્ટેડ સ્લિપ જુઓ."}
+                    ],
+                    quiz_title: "વોટર IQ ક્વિઝ",
+                    quiz_q1: "ભારતમાં મતદાન કરવા માટે લઘુત્તમ વય શું છે?", quiz_o1: ["16 વર્ષ", "18 વર્ષ", "21 વર્ષ"], quiz_a1: 1,
+                    quiz_q2: "જો મારી પાસે મતદાર ID હોય તો શું આધાર કાર્ડ ફરજિયાત છે?", quiz_o2: ["હા", "ના"], quiz_a2: 1,
+                    quiz_q3: "VVPAT સ્લિપ કેટલી વાર દેખાય છે?", quiz_o3: ["5 સેકન્ડ", "7 સેકન્ડ", "10 સેકન્ડ"], quiz_a3: 1,
+                    kyc_link: "તમારા ઉમેદવારને જાણો (KYC) ઍપ",
+                    kyc_desc: "મતદાન કરતા પહેલા તમારા સ્થાનિક નેતાઓ વિશે સંશોધન કરો.",
+                    quiz_completed: "ક્વિઝ પૂર્ણ!", quiz_ready: "તમે ચૂંટણી માટે તૈયાર છો.", restart: "ક્વિઝ પુનઃપ્રારંભ કરો",
+                    correct: "✅ સાચું! આગળ લોડ થઈ રહ્યું છે...", incorrect: "❌ ખોટું! આગળ લોડ થઈ રહ્યું છે..."
+                }
             };
             const fetchJourney = async () => {
-                try { const res = await fetch(`/api/journey?lang=${currentLang}&first_time=${isFirstTime}`); renderStepper((await res.json()).steps || []); } 
+                try { const res = await fetch(`/api/journey?lang=${window.currentLang}&first_time=${isFirstTime}`); renderStepper((await res.json()).steps || []); } 
                 catch (e) { console.error(e); }
             };
             const fetchTimeline = async (city) => {
@@ -186,18 +313,88 @@
                         <li class="flex justify-between items-center"><span class="text-slate-600">Counting</span> <span class="font-semibold text-rose-500">${escapeHTML(data.counting_date)}</span></li>
                     </ul>`;
             };
+
+            const renderEVMSteps = (steps) => {
+                const container = document.getElementById('evmStepsContainer');
+                container.innerHTML = '';
+                steps.forEach((step, index) => {
+                    container.innerHTML += `
+                        <div class="border border-slate-200 rounded-xl overflow-hidden bg-white hover:border-blue-300 transition-colors cursor-pointer group" onclick="toggleEVMStep(this)">
+                            <div class="p-4 flex justify-between items-center bg-slate-50 group-hover:bg-blue-50 transition-colors">
+                                <h4 class="font-semibold text-slate-800">${escapeHTML(step.title)}</h4>
+                                <svg class="w-5 h-5 text-blue-500 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+                            </div>
+                            <div class="evm-desc max-h-0 overflow-hidden transition-all duration-300 px-4 text-slate-600">
+                                <p class="py-4 border-t border-slate-100">${escapeHTML(step.desc)}</p>
+                            </div>
+                        </div>
+                    `;
+                });
+            };
+
+            window.renderQuizQuestion = () => {
+                const container = document.getElementById('quizContainer');
+                const t = window.appTranslations[window.currentLang];
+                if (window.currentQuizIndex >= window.quizQuestions.length) {
+                    container.innerHTML = `
+                        <div class="text-center py-6">
+                            <div class="w-16 h-16 bg-green-100 rounded-full flex items-center justify-center mx-auto mb-4">
+                                <svg class="w-8 h-8 text-green-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M5 13l4 4L19 7"></path></svg>
+                            </div>
+                            <h4 class="text-xl font-bold text-slate-800">${escapeHTML(t.quiz_completed)}</h4>
+                            <p class="text-slate-500 mt-2">${escapeHTML(t.quiz_ready)}</p>
+                            <button onclick="window.currentQuizIndex=0; window.renderQuizQuestion()" class="mt-4 text-blue-600 font-medium hover:underline">${escapeHTML(t.restart)}</button>
+                        </div>
+                    `;
+                    return;
+                }
+                const q = window.quizQuestions[window.currentQuizIndex];
+                let optionsHtml = q.o.map((opt, i) => `
+                    <button onclick="window.handleQuizAnswer(${i}, ${q.a})" class="w-full text-left p-3 border border-slate-200 rounded-lg hover:bg-blue-50 hover:border-blue-300 transition-colors focus:outline-none mb-2 quiz-option">
+                        ${escapeHTML(opt)}
+                    </button>
+                `).join('');
+                
+                container.innerHTML = `
+                    <div class="mb-4">
+                        <span class="text-xs font-bold uppercase tracking-wider text-slate-500">Question ${window.currentQuizIndex + 1} of ${window.quizQuestions.length}</span>
+                        <h4 class="text-lg font-bold text-slate-800 mt-1">${escapeHTML(q.q)}</h4>
+                    </div>
+                    <div>${optionsHtml}</div>
+                    <div id="quizFeedback" class="mt-4 hidden p-3 rounded-lg text-sm font-medium"></div>
+                `;
+            };
+
+            const initStaticComponents = () => {
+                const t = window.appTranslations[window.currentLang];
+                document.getElementById('howToVoteTitle').innerText = t.how_to_vote;
+                renderEVMSteps(t.evm_steps);
+                
+                document.getElementById('quizTitle').innerText = t.quiz_title;
+                document.getElementById('kycLink').innerText = t.kyc_link;
+                document.getElementById('kycDesc').innerText = t.kyc_desc;
+
+                window.quizQuestions = [
+                    { q: t.quiz_q1, o: t.quiz_o1, a: t.quiz_a1 },
+                    { q: t.quiz_q2, o: t.quiz_o2, a: t.quiz_a2 },
+                    { q: t.quiz_q3, o: t.quiz_o3, a: t.quiz_a3 }
+                ];
+                window.currentQuizIndex = 0;
+                window.renderQuizQuestion();
+            };
             firstTimeVoter.addEventListener('change', (e) => {
                 isFirstTime = e.target.checked;
                 fetchJourney();
             });
             langSelect.addEventListener('change', (e) => {
-                currentLang = e.target.value; const t = translations[currentLang];
+                window.currentLang = e.target.value; const t = window.appTranslations[window.currentLang];
                 document.getElementById('heroTitle').innerText = t.title; document.getElementById('heroDesc').innerText = t.desc;
                 document.querySelector('h3.text-2xl').innerText = t.process; citySearch.placeholder = t.search;
                 document.getElementById('voterLabel').innerText = t.voter_label;
                 document.getElementById('important-note').innerText = t.note;
                 if(!citySearch.value) document.getElementById('timelineContent').innerHTML = `<p class="text-slate-500 italic py-6">${escapeHTML(t.no_city)}</p>`;
                 fetchJourney();
+                initStaticComponents();
             });
             searchBtn.addEventListener('click', () => { 
                 const city = citySearch.value.trim();
@@ -207,6 +404,7 @@
             });
             citySearch.addEventListener('keypress', (e) => { if (e.key === 'Enter') searchBtn.click(); });
             fetchJourney();
+            initStaticComponents();
         });
     </script>
 </body>
