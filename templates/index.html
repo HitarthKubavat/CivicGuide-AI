@@ -34,7 +34,7 @@
     </header>
 
     <div class="bg-yellow-100 text-yellow-900 py-2 shadow-sm border-b border-yellow-200">
-        <marquee behavior="scroll" direction="left" class="font-medium text-sm mt-1">📢 Important: This assistant is currently optimized for Gujarat state election processes and timelines.</marquee>
+        <marquee behavior="scroll" direction="left" class="font-medium text-sm mt-1" id="important-note">📢 Important: This assistant is currently optimized for Gujarat state election processes and timelines.</marquee>
     </div>
 
     <main class="max-w-6xl mx-auto px-6 py-10 space-y-12 overflow-x-hidden">
@@ -131,9 +131,9 @@
             let currentLang = 'en';
             let isFirstTime = true;
             const translations = {
-                en: { title: "Find Your Local Election Details", desc: "Enter your city to instantly discover upcoming election dates and view the official step-by-step registration roadmap.", process: "ECI Registration Process", search: "Search by City (e.g. Ahmedabad)", no_city: "Search for a city viewing dates.", voter_label: "First-time Voter?" },
-                hi: { title: "अपना स्थानीय चुनाव विवरण खोजें", desc: "आगामी चुनाव तिथियों को तुरंत जानने और आधिकारिक चरण-दर-चरण पंजीकरण रोडमैप देखने के लिए अपना शहर दर्ज करें।", process: "ECI पंजीकरण प्रक्रिया", search: "शहर खोजें (उदा. अहमदाबाद)", no_city: "तिथियां देखने के लिए शहर खोजें।", voter_label: "पहली बार मतदाता?" },
-                gu: { title: "તમારી સ્થાનિક ચૂંટણી વિગતો શોધો", desc: "આગામી ચૂંટણીની તારીખો તરત જ શોધવા અને અધિકૃત સ્ટેપ-બ-સ્ટેપ નોંધણી રોડમેપ જોવા માટે તમારું શહેર દાખલ કરો.", process: "ECI નોંધણી પ્રક્રિયા", search: "શહેર દ્વારા શોધો (દા.ત. અમદાવાદ)", no_city: "તારીખો જોવા માટે શહેર શોધો.", voter_label: "પ્રથમ વખત મતદાર?" }
+                en: { title: "Find Your Local Election Details", desc: "Enter your city to instantly discover upcoming election dates and view the official step-by-step registration roadmap.", process: "ECI Registration Process", search: "Search by City (e.g. Ahmedabad)", no_city: "Search for a city viewing dates.", voter_label: "First-time Voter?", note: "📢 Important: This assistant is currently optimized for Gujarat state election processes and timelines." },
+                hi: { title: "अपना स्थानीय चुनाव विवरण खोजें", desc: "आगामी चुनाव तिथियों को तुरंत जानने और आधिकारिक चरण-दर-चरण पंजीकरण रोडमैप देखने के लिए अपना शहर दर्ज करें।", process: "ECI पंजीकरण प्रक्रिया", search: "शहर खोजें (उदा. अहमदाबाद)", no_city: "तिथियां देखने के लिए शहर खोजें।", voter_label: "पहली बार मतदाता?", note: "📢 महत्वपूर्ण: यह सहायक वर्तमान में गुजरात राज्य चुनाव प्रक्रियाओं और समयसीमा के लिए अनुकूलित है।" },
+                gu: { title: "તમારી સ્થાનિક ચૂંટણી વિગતો શોધો", desc: "આગામી ચૂંટણીની તારીખો તરત જ શોધવા અને અધિકૃત સ્ટેપ-બ-સ્ટેપ નોંધણી રોડમેપ જોવા માટે તમારું શહેર દાખલ કરો.", process: "ECI નોંધણી પ્રક્રિયા", search: "શહેર દ્વારા શોધો (દા.ત. અમદાવાદ)", no_city: "તારીખો જોવા માટે શહેર શોધો.", voter_label: "પ્રથમ વખત મતદાર?", note: "📢 મહત્વપૂર્ણ: આ આસિસ્ટન્ટ અત્યારે ગુજરાત રાજ્યની ચૂંટણી પ્રક્રિયાઓ અને સમયરેખા માટે ઓપ્ટિમાઇઝ કરેલ છે." }
             };
             const fetchJourney = async () => {
                 try { const res = await fetch(`/api/journey?lang=${currentLang}&first_time=${isFirstTime}`); renderStepper((await res.json()).steps || []); } 
@@ -195,6 +195,7 @@
                 document.getElementById('heroTitle').innerText = t.title; document.getElementById('heroDesc').innerText = t.desc;
                 document.querySelector('h3.text-2xl').innerText = t.process; citySearch.placeholder = t.search;
                 document.getElementById('voterLabel').innerText = t.voter_label;
+                document.getElementById('important-note').innerText = t.note;
                 if(!citySearch.value) document.getElementById('timelineContent').innerHTML = `<p class="text-slate-500 italic py-6">${escapeHTML(t.no_city)}</p>`;
                 fetchJourney();
             });
