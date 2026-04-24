@@ -115,6 +115,8 @@
                     <span id="howToVoteTitle">How to Vote on Election Day</span>
                     <svg class="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 10V3L4 14h7v7l9-11h-7z"></path></svg>
                 </h3>
+                <div class="bg-indigo-50 text-indigo-800 p-4 rounded-xl mb-6 text-sm font-semibold border border-indigo-200 shadow-sm text-center" id="pollingLayoutText">
+                </div>
                 <div class="space-y-4" id="evmStepsContainer">
                     <!-- Dynamic EVM Steps -->
                 </div>
@@ -210,11 +212,11 @@
                 en: { 
                     title: "Find Your Local Election Details", desc: "Enter your city to instantly discover upcoming election dates and view the official step-by-step registration roadmap.", process: "ECI Registration Process", search: "Search by City (e.g. Ahmedabad)", no_city: "Search for a city viewing dates.", voter_label: "First-time Voter?", note: "📢 Important: This assistant is currently optimized for Gujarat state election processes and timelines.",
                     how_to_vote: "How to Vote on Election Day",
+                    polling_layout: "Polling Booth Layout: PO1 (ID Check) -> PO2 (Ink & Register) -> PO3 (EVM Control) -> Voting Compartment (EVM & VVPAT).",
                     evm_steps: [
-                        {title: "Step 1: ID Check", desc: "Identification by Polling Officer (PO1)."},
+                        {title: "Step 1: ID Check", desc: "Identification by Polling Officer (PO1). Acceptable ID Proofs if no EPIC: Aadhaar, Passport, Driving License, PAN Card, Service ID, Passbook with photo, etc. Note: Only original documents are accepted. Photocopies or soft copies on mobile (except e-EPIC) are not valid."},
                         {title: "Step 2: Verification", desc: "Signature and Indelible Ink (PO2)."},
-                        {title: "Step 3: Vote", desc: "Ballot Unit (EVM) - Press the button for your candidate."},
-                        {title: "Step 4: VVPAT", desc: "VVPAT Verification - See the printed slip for 7 seconds."}
+                        {title: "Step 3 & 4: Voting & VVPAT", desc: "Ballot Unit (EVM) & VVPAT Verification. Press the blue button once. A red light will glow, and a long beep will sound. Look at the VVPAT window immediately to see the printed slip with your candidate's name and symbol for 7 seconds."}
                     ],
                     quiz_title: "Voter IQ Quiz",
                     quiz_q1: "What is the minimum age to vote in India?", quiz_o1: ["16 Years", "18 Years", "21 Years"], quiz_a1: 1,
@@ -228,11 +230,11 @@
                 hi: { 
                     title: "अपना स्थानीय चुनाव विवरण खोजें", desc: "आगामी चुनाव तिथियों को तुरंत जानने और आधिकारिक चरण-दर-चरण पंजीकरण रोडमैप देखने के लिए अपना शहर दर्ज करें।", process: "ECI पंजीकरण प्रक्रिया", search: "शहर खोजें (उदा. अहमदाबाद)", no_city: "तिथियां देखने के लिए शहर खोजें।", voter_label: "पहली बार मतदाता?", note: "📢 महत्वपूर्ण: यह सहायक वर्तमान में गुजरात राज्य चुनाव प्रक्रियाओं और समयसीमा के लिए अनुकूलित है।",
                     how_to_vote: "चुनाव के दिन मतदान कैसे करें",
+                    polling_layout: "मतदान केंद्र लेआउट: PO1 (आईडी जांच) -> PO2 (स्याही और रजिस्टर) -> PO3 (EVM नियंत्रण) -> वोटिंग कम्पार्टमेंट (EVM और VVPAT)।",
                     evm_steps: [
-                        {title: "चरण 1: पहचान", desc: "मतदान अधिकारी (PO1) द्वारा पहचान।"},
+                        {title: "चरण 1: पहचान (ID Check)", desc: "मतदान अधिकारी (PO1) द्वारा पहचान। यदि EPIC नहीं है तो 12 स्वीकार्य आईडी प्रमाण: आधार, पासपोर्ट, ड्राइविंग लाइसेंस, पैन कार्ड, सर्विस आईडी, फोटो वाली पासबुक, आदि। नोट: केवल मूल दस्तावेज ही स्वीकार किए जाते हैं। फोटोकॉपी या मोबाइल पर सॉफ्ट कॉपी (e-EPIC को छोड़कर) मान्य नहीं हैं।"},
                         {title: "चरण 2: सत्यापन", desc: "हस्ताक्षर और अमिट स्याही (PO2)।"},
-                        {title: "चरण 3: मतदान", desc: "बैलेट यूनिट (EVM) - अपने उम्मीदवार के लिए बटन दबाएं।"},
-                        {title: "चरण 4: VVPAT", desc: "VVPAT सत्यापन - 7 सेकंड के लिए मुद्रित पर्ची देखें।"}
+                        {title: "चरण 3 और 4: मतदान और VVPAT", desc: "EVM-VVPAT लिंक: नीला बटन एक बार दबाएं। लाल बत्ती जलेगी, और एक लंबी बीप सुनाई देगी। अपने उम्मीदवार के नाम और चुनाव चिन्ह वाली मुद्रित पर्ची को 7 सेकंड तक देखने के लिए तुरंत VVPAT विंडो देखें।"}
                     ],
                     quiz_title: "वोटर IQ क्विज़",
                     quiz_q1: "भारत में मतदान करने की न्यूनतम आयु क्या है?", quiz_o1: ["16 वर्ष", "18 वर्ष", "21 वर्ष"], quiz_a1: 1,
@@ -246,11 +248,11 @@
                 gu: { 
                     title: "તમારી સ્થાનિક ચૂંટણી વિગતો શોધો", desc: "આગામી ચૂંટણીની તારીખો તરત જ શોધવા અને અધિકૃત સ્ટેપ-બ-સ્ટેપ નોંધણી રોડમેપ જોવા માટે તમારું શહેર દાખલ કરો.", process: "ECI નોંધણી પ્રક્રિયા", search: "શહેર દ્વારા શોધો (દા.ત. અમદાવાદ)", no_city: "તારીખો જોવા માટે શહેર શોધો.", voter_label: "પ્રથમ વખત મતદાર?", note: "📢 મહત્વપૂર્ણ: આ આસિસ્ટન્ટ અત્યારે ગુજરાત રાજ્યની ચૂંટણી પ્રક્રિયાઓ અને સમયરેખા માટે ઓપ્ટિમાઇઝ કરેલ છે.",
                     how_to_vote: "ચૂંટણીના દિવસે મતદાન કેવી રીતે કરવું",
+                    polling_layout: "મતદાન મથક લેઆઉટ: PO1 (ID તપાસ) -> PO2 (શાહી અને રજિસ્ટર) -> PO3 (EVM નિયંત્રણ) -> મતદાન કમ્પાર્ટમેન્ટ (EVM અને VVPAT).",
                     evm_steps: [
-                        {title: "પગલું 1: ઓળખ", desc: "મતદાન અધિકારી (PO1) દ્વારા ઓળખ."},
+                        {title: "પગલું 1: ઓળખ (ID Check)", desc: "મતદાન અધિકારી (PO1) દ્વારા ઓળખ. જો EPIC ન હોય તો 12 માન્ય ID પુરાવા: આધાર, પાસપોર્ટ, ડ્રાઇવિંગ લાઇસન્સ, પાન કાર્ડ, સર્વિસ ID, ફોટાવાળી પાસબુક, વગેરે. નોંધ: માત્ર અસલ દસ્તાવેજો જ સ્વીકારવામાં આવે છે. મોબાઈલ પર ફોટોકોપી અથવા સોફ્ટ કોપી (e-EPIC સિવાય) માન્ય નથી."},
                         {title: "પગલું 2: ચકાસણી", desc: "સહી અને અમીટ શાહી (PO2)."},
-                        {title: "પગલું 3: મતદાન", desc: "બેલેટ યુનિટ (EVM) - તમારા ઉમેદવાર માટે બટન દબાવો."},
-                        {title: "પગલું 4: VVPAT", desc: "VVPAT ચકાસણી - 7 સેકન્ડ માટે પ્રિન્ટેડ સ્લિપ જુઓ."}
+                        {title: "પગલું 3 અને 4: મતદાન અને VVPAT", desc: "EVM-VVPAT લિંક: એકવાર વાદળી બટન દબાવો. લાલ લાઈટ થશે, અને લાંબી બીપ વાગશે. તમારા ઉમેદવારના નામ અને ચિહ્ન સાથે પ્રિન્ટેડ સ્લિપ 7 સેકન્ડ માટે જોવા માટે તરત જ VVPAT વિન્ડો જુઓ."}
                     ],
                     quiz_title: "વોટર IQ ક્વિઝ",
                     quiz_q1: "ભારતમાં મતદાન કરવા માટે લઘુત્તમ વય શું છે?", quiz_o1: ["16 વર્ષ", "18 વર્ષ", "21 વર્ષ"], quiz_a1: 1,
@@ -368,6 +370,7 @@
             const initStaticComponents = () => {
                 const t = window.appTranslations[window.currentLang];
                 document.getElementById('howToVoteTitle').innerText = t.how_to_vote;
+                document.getElementById('pollingLayoutText').innerText = t.polling_layout;
                 renderEVMSteps(t.evm_steps);
                 
                 document.getElementById('quizTitle').innerText = t.quiz_title;
