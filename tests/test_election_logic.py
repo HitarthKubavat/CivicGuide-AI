@@ -21,6 +21,18 @@ class TestElectionLogic(unittest.TestCase):
         journey = self.logic.get_voter_journey("es")
         self.assertEqual(journey["steps"][0]["title"], "Application Submission")
 
+    def test_get_existing_voter_journey_english(self):
+        journey = self.logic.get_voter_journey("en", first_time=False)
+        self.assertIn("steps", journey)
+        self.assertEqual(len(journey["steps"]), 4)
+        self.assertEqual(journey["steps"][0]["title"], "Check Name in Voter List")
+
+    def test_get_existing_voter_journey_gujarati(self):
+        journey = self.logic.get_voter_journey("gu", first_time=False)
+        self.assertIn("steps", journey)
+        self.assertEqual(len(journey["steps"]), 4)
+        self.assertEqual(journey["steps"][0]["title"], "મતદાર યાદીમાં નામ તપાસો")
+
     def test_get_timeline_dates_exist(self):
         timeline = self.logic.get_timeline("Ahmedabad")
         self.assertEqual(timeline["location"], "Ahmedabad")

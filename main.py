@@ -15,12 +15,16 @@ election_service = ElectionLogic()
 @app.get("/", response_class=HTMLResponse)
 async def read_root(request: Request):
     """Serve the basic HTML UI from templates."""
-    return templates.TemplateResponse("index.html", {"request": request, "title": "Interactive Election Assistant"})
+    return templates.TemplateResponse(
+    request=request, 
+    name="index.html", 
+    context={"title": "Interactive Election Assistant"}
+)
 
 @app.get("/api/journey")
-async def get_journey(lang: str = "en"):
+async def get_journey(lang: str = "en", first_time: bool = True):
     """Get the voter journey mapping. Supported languages: 'en' (English), 'gu' (Gujarati)."""
-    return election_service.get_voter_journey(language=lang)
+    return election_service.get_voter_journey(language=lang, first_time=first_time)
 
 @app.get("/api/timeline/{city}")
 async def get_timeline(city: str):
