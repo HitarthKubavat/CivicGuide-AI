@@ -1,40 +1,35 @@
-# CivicGuide-AI
+# Matdaar-Mitra (CivicGuide AI)
 
-**Vertical:** Civic Tech & Governance
+A high-performance, Interactive Election Assistant designed to bridge the gap between citizens and the electoral process.
 
-CivicGuide-AI is a high-performance, Interactive Election Assistant designed to bridge the gap between citizens and the electoral process. By offering a dynamic and localized platform, the app empowers voters with personalized ECI (Election Commission of India) guidelines, local election timelines, and accessible multi-language support.
+## 🏛️ Chosen Vertical
+**Civic Tech & Governance**: Focused on empowering citizens through digital literacy and simplified access to electoral processes.
 
----
+## 💡 Approach and Logic
+- **Hyper-Localization**: The assistant is specifically geofenced and optimized for Gujarat, providing a specialized experience for local voters.
+- **Progressive Disclosure**: Uses an interactive accordion system to deliver complex ECI registration and voting-day information without overwhelming the user.
+- **Inclusion First**: Built-in support for Gujarati, Hindi, and English to ensure no citizen is left behind due to language barriers.
+- **Voter Journey Mapping**: Detailed walkthroughs from Form 6 submission to the final VVPAT slip verification inside the polling booth.
 
-## 🧠 Approach and Logic
-
-The architecture is designed for performance, modularity, and rapid prototyping capabilities:
-
-- **Agentic Workflow**: Developed using an advanced agentic workflow within **Antigravity**. The AI assistant autonomously reasoned through the requirements, updated backend Python modules, integrated new logical decision making flows (e.g., distinguishing between First-Time and Existing voters), and leveraged the **Browser Agent** for automated end-to-end UI testing without manual intervention.
-- **FastAPI Core**: The core logic is powered by FastAPI, ensuring lightning-fast execution, type safety, and a highly modular router-based structure for managing timelines and voter journey datasets.
-
-## ⚙️ How it Works
-
-1. **The Stepper UI**: The application features a dynamic Stepper UI that visually breaks down complex ECI registration processes into bite-sized, sequential steps. 
-2. **Logical Decision Making**: The Stepper adapts intelligently. Users can toggle "Are you a First-time Voter?", which triggers a state change in the backend logic, instantly swapping the default Form 6 journey for an existing voter journey (Form 8, Form 6B, etc.).
-3. **Localized Search**: Users can input their specific city (e.g., Ahmedabad) into the central search bar. The backend processes the string and returns simulated local election timeline dates, which are seamlessly injected into the UI via an asynchronous fetch call.
+## 🚀 How the Solution Works
+- **Dynamic Regional Search**: Users enter a Gujarat city (e.g., Rajkot, Ahmedabad) to instantly fetch relevant election timelines and localized polling booth maps.
+- **Interactive Education**: Features a 'How to Vote' module that demystifies the EVM-VVPAT process and a 'Voter IQ Quiz' to correct common misconceptions.
+- **Document Checklists**: Provides specific, actionable lists of the 12 acceptable ID proofs and required registration documents.
 
 ## 🌐 Google Services Integration
+- **Google Antigravity**: The core development and orchestration environment.
+- **Gemini 1.5 Flash**: Powers the intelligent dialogue, multilingual dictionary, and logical decision-making.
+- **Google Maps Embed API**: Provides dynamic, real-time geographic context for constituencies without requiring API key management.
+- **Google Search (Agentic)**: Utilized during the build phase to verify official ECI guidelines and ensure data accuracy.
 
-The platform is designed to hook into powerful external services:
-- **Google Maps API**: A dedicated placeholder for Google Maps is included on the UI to eventually fetch and display exact Polling Booth locations based on the searched city.
-- **Google Translate API**: A foundational implementation structure is present to scale up the hardcoded translations (English & Gujarati) by integrating the Google Translate API for dynamic, on-the-fly accessibility across dozens of Indian regional languages.
+## 📌 Assumptions
+- Data is simulated based on the 2026 Gujarat electoral cycle.
+- Users have access to a standard mobile or desktop web browser.
+- The assistant serves as an educational bridge to official government portals.
 
-## 🔒 Security & Accessibility
-
-- **Input Sanitization**: To mitigate Cross-Site Scripting (XSS) attacks, a custom `escapeHTML` logic is implemented on the frontend, ensuring all JSON inputs from the backend are strictly sanitized before injecting into the DOM.
-- **Localization**: Built from the ground up for Gujarat, the application features a seamless toggle between English and Gujarati, making the critical voter information highly accessible and user-friendly for local citizens.
-
-## 📋 Assumptions
-
-- Data generated for the timelines is simulated and acts as a placeholder for a real-time ECI datastore.
-- The workflow data represents the current ECI registration cycle.
-- The end-user possesses basic digital literacy and access to a modern web browser.
+## 🛡️ Security & Privacy
+- **Stateless Architecture**: No personal voter data (PII) is stored, ensuring 100% privacy and security.
+- **Regional Validation**: Custom logic prevents out-of-scope searches to maintain high data integrity for the target region.
 
 ---
 
