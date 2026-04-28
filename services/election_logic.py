@@ -67,18 +67,9 @@ class ElectionLogic:
     def get_timeline(self, city: str) -> dict:
         """Returns a dummy timeline for the specified city."""
         city_lower = city.strip().lower()
-        valid_gujarat_cities = {
-            "ahmedabad", "surat", "vadodara", "rajkot", "bhavnagar",
-            "jamnagar", "gandhinagar", "junagadh", "gandhidham", "anand",
-            "navsari", "morbi", "nadiad", "surendranagar", "bharuch",
-            "mehsana", "bhuj", "porbandar", "palanpur", "valsad",
-            "vapi", "gondal", "veraval", "godhra", "patan",
-            "dahod", "botad", "amreli", "deesa", "jetpur"
-        }
+        if not city_lower:
+            raise ValueError("City name cannot be empty")
         
-        if city_lower not in valid_gujarat_cities:
-            raise ValueError("CivicGuide AI currently provides detailed electoral data for Gujarat only. Please enter a city within Gujarat (e.g., Rajkot, Ahmedabad, Surat).")
-
         city_title = city.title()
         now = datetime.now()
         
